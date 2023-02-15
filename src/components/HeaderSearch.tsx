@@ -1,0 +1,131 @@
+import React, { useState } from 'react'
+import styled from '@emotion/styled'
+import { useNavigate } from 'react-router-dom';
+import { BsXLg } from 'react-icons/bs'
+import { useSelector } from 'react-redux';
+import { RootState, useAppDispatch } from '../Store';
+import { shoppingSlice } from '../Store/productSlice';
+import { AMAZON_ORANGE, BLACK1, DARK_NAVY, WHITE } from '../constant/color';
+
+
+export default function HeaderSearch() {
+  const theme = useSelector((state:RootState) => state.mallState.theme)
+  const data = useSelector((state:RootState) => state.mallState.data)
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [searchValue, setSearchValue] = useState('')
+  const [searchSectionState, setSearchSectionState] = useState(true)
+  const searchHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value)
+  }
+  const filteredData = searchValue.length > 0 ? data.filter(item => item.title.toLowerCase().split(' ').join('').includes(searchValue.toLowerCase().split(' ').join(''))) : [];
+  const submitHandler = (e:React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    navigate('/store');
+    setSearchSectionState(false)
+    dispatch(shoppingSlice.actions.setSearchingData(filteredData));
+  }
+  
+  const handleSearchSection = (boolean: boolean) => {
+    setSearchSectionState(boolean)
+  }
+  return (
+    <SearchContainer >
+      <SearchForm id='form' onSubmit={(e) => submitHandler(e)}>
+        <Search tabIndex={0} id='form' 
+          type='text' 
+          placeholder='Search Amazon' 
+          value={searchValue} 
+          onFocus={() => {
+            handleSearchSection(true) 
+          }} 
+          onChange={(e) => searchHandler(e)} />
+        {searchValue.length> 0 && <IconX onClick={() => setSearchValue('')}><BsXLg /></IconX>}
+        <SearchButton theme={theme} type='submit' value='Search' onClick={(e) => submitHandler(e)} />
+      </SearchForm>
+      {(searchValue.length>0 && searchSectionState) && 
+      <SearchSection>
+        {filteredData.map((item) => (
+          <FilteredProduct 
+            tabIndex={0} 
+            onClick={() => {
+              handleSearchSection(!searchSectionState) 
+              return navigate(`/store/${item.id}`)
+            }} 
+            key={item.id}>
+              {item.title}
+          </FilteredProduct>
+        ) )}
+      </SearchSection>}
+    </SearchContainer>
+  )
+}
+
+const SearchContainer = styled.div`
+  position: relative;
+  padding: 0 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 200px;
+  width: 45vw;
+  height: 230px;
+  // z-index: -1;
+`
+const SearchForm = styled.form`
+  display: flex;
+`
+const Search = styled.input`
+  margin-right: 5px;
+  padding: 0 12px;
+  width: 83%;
+  min-width: 100px;
+  height: 30px;
+  font-size: 18px;
+`
+const IconX = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: -32px;
+  margin-right: 16px;
+`
+const SearchButton = styled.input<{theme:boolean}>`
+  background-color: ${props => props.theme ? AMAZON_ORANGE : DARK_NAVY};
+  color: ${props => props.theme ? BLACK1 : WHITE};
+  border: none;
+  border-radius: 5px;
+  min-width: 75px;
+  height: 35px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  &:hover {
+    transform: scale(1.1)
+  }
+`
+const SearchSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 87%;
+  max-height: 300px;
+  padding-right: 10px;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: white;
+  border-radius: 5px;
+  transition: all 0.3s;
+`
+const FilteredProduct = styled.div`
+  width: 96%;
+  margin: 0 10px;
+  padding: 10px; 
+  white-space: wrap;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: rgba(0,0,0,0.3)
+  }
+`

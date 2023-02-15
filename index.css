@@ -1,0 +1,205 @@
+ul, li {
+  list-style: none;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  list-style-type: none;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  
+}
+
+/* BUTTONS */
+.btn {
+  padding: 10px;
+  border: 2px solid #333;
+  border-radius: 4px;
+  color: #333;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  display: block;
+  transition: .4s;
+}
+.btn:hover {
+  background-color: #333;
+  color: #FFF;
+}
+.btn.checked {
+  background-color: #333;
+  color: #FFF;
+}
+.btn.btn--reverse {
+  background-color: transparent;
+  border-color: #FFF;
+  color: #FFF;
+}
+.btn.btn--reverse:hover {
+  background-color: #F6F5F0;
+  color: #333;
+}
+.btn.btn--reverse.checked {
+  background-color: #F6F5F0;
+  color: #333;
+}
+.btn.btn--brown {
+  color: #592B18;
+  background-color: transparent;
+  border-color: #592B18;
+}
+.btn.btn--brown:hover {
+  color: #FFF;
+  background-color: #592B18;
+}
+.btn.btn--brown.checked {
+  background-color: #592B18;
+  color: #FFF;
+}
+.btn.btn--gold {
+  color: #D9AA8A;
+  border-color: #D9AA8A;
+}
+.btn.btn--gold:hover {
+  color: #FFF;
+  background-color: #D9AA8A;
+}
+.btn.btn--white {
+  color: #333;
+  border-color: #FFF;
+  /* background-color: #D9AA8A; */
+}
+.btn.btn--white:hover {
+  color: #FFF;
+  background-color: transparent;
+}
+.btn.btn--white.checked {
+  color: #FFF;
+  background-color: transparent;
+}
+
+
+/*FOOTER*/
+footer {
+  border-top: 1px solid #333;
+  position: relative;
+  z-index: 10;
+
+}
+footer .inner {
+  padding: 30px 0 50px 0;
+}
+footer .menu {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+footer .menu li {
+  position: relative;
+  display: block;
+  color: #999;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 15px;
+}
+footer .menu li::before {
+  content: "";
+  width: 3px;
+  height: 3px;
+  background-color: #555;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -1px;
+  margin: auto;
+}
+footer .menu li:last-child::before {
+  display: none;
+}
+
+footer .menu .green {
+  color: #669900;
+}
+footer .btn-group {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+footer .btn-group .btn {
+  font-size: 12px;
+  margin-right: 10px;
+}
+footer .btn-group .btn:last-child {
+  margin-right: 0;
+}
+footer .info {
+  margin-top: 30px;
+  text-align: center;
+}
+footer .info span {
+  margin-right: 20px;
+  color: #888;
+  font-size: 12px;
+}
+footer .info span:last-child {
+  margin-right: 0;
+}
+footer .copyright {
+  color: #888;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 12px;
+}
+footer .logo {
+  margin: 30px auto 0;
+}
+
+/*Animation*/
+@-webkit-keyframes slide{
+  0%{
+    left: 0;
+  }
+  20%{
+    left: 0;
+  }
+  25%{
+    left: -100%;
+  }
+  45%{
+    left: -100%;
+  }
+  50%{
+    left: -200%;
+  }
+  70%{
+    left: -200%;
+  }
+  75%{
+    left: -300%;
+  }
+  95%{
+    left: -300%;
+  }
+  100%{
+    left: 0;
+  }
+}
+.animation {
+  animation-name: slide;
+  animation-duration: 30s;
+  animation-direction: normal;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-delay: 5s;
+}

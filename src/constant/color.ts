@@ -1,0 +1,13 @@
+export const IVORY = '#F6F5F0'
+export const GRAY1 = '#555'
+export const GRAY2 = '#999'
+export const LIGHT_GRAY = '#CCC'
+export const WHITE = '#fff'
+export const BLACK1 = '#333'
+export const BLACK3 = '#272727'
+export const NAVY = '#343a40'
+export const DARK_NAVY = '#131922'
+export const DARK_GREEN = '#447306'
+export const LIGHT_GREEN = '#64a70b'
+export const AMAZON_ORANGE = '#f5be6a'
+
