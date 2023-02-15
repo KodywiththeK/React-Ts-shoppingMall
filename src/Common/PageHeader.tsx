@@ -13,6 +13,7 @@ import HeaderSearch from '../components/HeaderSearch';
 import { Desktop, Tablet } from '../ReactResponsive/Responsive';
 import HeaderSearchTablet from '../components/Tablet/HeaderSearchTablet';
 import MiniCartTablet from '../components/Tablet/MiniCartTable';
+import LogoImage from '../../images/amazonLogo.png'
 
 export default function PageHeader() {
 
@@ -29,7 +30,7 @@ export default function PageHeader() {
   return (
     <Header theme={ theme ? IVORY : GRAY1 } >
       <Inner>
-        <Link to={'/'}><Logo src='/images/amazonLogo.png' alt='logo' /></Link>
+        <Link to={'/'}><Logo src={LogoImage} alt='logo' /></Link>
         <Link to={'/store'}><Store onClick={toStore} theme={theme ? BLACK3 : WHITE }>STORE</Store></Link>
         <Desktop>
         <HeaderSearch />
